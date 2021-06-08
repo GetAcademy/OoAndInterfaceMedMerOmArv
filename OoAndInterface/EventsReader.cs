@@ -27,11 +27,11 @@ namespace OoAndInterface
                 var eventType = lineParts[1];
                 var isDeposit = eventType == "deposit";
                 var isBuy = eventType == "buy";
+                Event myEvent = null;
                 if (isDeposit || eventType == "withdraw")
                 {
                     var amount = Convert.ToDecimal(lineParts[2]);
-                    var depositOrWithdrawEvent = new DepositOrWithdrawEvent(date, amount, isDeposit);
-                    eventList.Add(depositOrWithdrawEvent);
+                    myEvent = new DepositOrWithdrawEvent(date, amount, isDeposit);
                 }
                 else if (isBuy || eventType == "sell")
                 {
@@ -39,9 +39,9 @@ namespace OoAndInterface
                     var stock = stockList.Get(stockTicker);
                     var stockCount = Convert.ToInt32(lineParts[3]);
                     var amountPerStock = Convert.ToDecimal(lineParts[4]);
-                    var buyOrSellEvent = new BuyOrSellEvent(date, amountPerStock, stock, stockCount, isBuy);
-                    eventList.Add(buyOrSellEvent);
+                    myEvent = new BuyOrSellEvent(date, amountPerStock, stock, stockCount, isBuy);
                 }
+                if(myEvent!=null)eventList.Add(myEvent);
             }
 
             return eventList;

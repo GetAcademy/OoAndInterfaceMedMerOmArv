@@ -9,14 +9,14 @@ namespace OoAndInterface
 {
     class EventList
     {
-        private List<IEvent> _events;
+        private List<Event> _events;
 
         public EventList()
         {
-            _events = new List<IEvent>();
+            _events = new List<Event>();
         }
 
-        public void Add(IEvent myEvent)
+        public void Add(Event myEvent)
         {
             _events.Add(myEvent);
         }
